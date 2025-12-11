@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SPPG Babau</title>
+
+<style>
+    body{
+        font-family: Arial, sans-serif;
+        background: #f4f7f2;
+        margin:0; padding:40px;
+        text-align:center;
+    }
+    .card{
+        max-width: 800px;
+        margin:auto;
+        background:white;
+        padding:40px;
+        border-radius:20px;
+        box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    }
+    button{
+        background:#16a34a;
+        color:white;
+        padding:10px 25px;
+        border:none;
+        border-radius:10px;
+        cursor:pointer;
+        font-size:16px;
+    }
+    .menu-list button{
+        display:block;
+        width:100%;
+        margin:10px 0;
+        background:#0284c7;
+    }
+    .hidden{ display:none; }
+</style>
+
+</head>
+<body>
+
+<div class="card">
+
+    <!-- ======= HALAMAN AWAL ======= -->
+    <div id="home-page">
+        <h1>👨‍🍳 SPPG Babau</h1>
+        <p><b>Visi:</b> Mewujudkan generasi sehat melalui Program Makanan Bergizi Gratis.</p>
+
+        <p><b>Misi:</b></p>
+        <ul style="text-align:left; display:inline-block;">
+            <li>Menyediakan makanan sehat & higienis untuk anak.</li>
+            <li>Meningkatkan kesadaran gizi keluarga.</li>
+            <li>Mendukung program kesehatan pemerintah.</li>
+        </ul>
+
+        <p><b>Area Pelayanan:</b> Sekolah Dasar & Posyandu Babau</p>
+
+        <br>
+        <button onclick="openMenu()">📌 Menu Utama</button>
+    </div>
+
+    <!-- ======= MENU UTAMA ======= -->
+    <div id="menu-page" class="hidden">
+        <h2>📌 Pilihan Menu</h2>
+        <div class="menu-list">
+            <button onclick="showPage('dok')">📄 Dokumentasi</button>
+            <button onclick="showPage('mbg')">🍱 Menu MBG</button>
+            <button onclick="showPage('tim')">👥 Tim</button>
+            <button onclick="showPage('kontak')">☎️ Kontak</button>
+        </div>
+        <br>
+        <button onclick="backHome()">⏪ Kembali</button>
+    </div>
+
+    <!-- ======= HALAMAN KONTEN ======= -->
+    <div id="content-page" class="hidden">
+        <div id="content-box"></div>
+        <br>
+        <button onclick="backMenu()">⬅️ Kembali ke Menu</button>
+    </div>
+
+</div>
+
+<script>
+function openMenu(){
+    document.getElementById("home-page").classList.add("hidden");
+    document.getElementById("menu-page").classList.remove("hidden");
+}
+
+function backHome(){
+    document.getElementById("home-page").classList.remove("hidden");
+    document.getElementById("menu-page").classList.add("hidden");
+}
+
+function backMenu(){
+    document.getElementById("menu-page").classList.remove("hidden");
+    document.getElementById("content-page").classList.add("hidden");
+}
+
+function showPage(page){
+    let content = "";
+
+   if(page === 'dok'){
+    content = `
+    <h2>📌 Dokumentasi Kegiatan</h2>
+
+    <div class="grid three">
+
+      <div class="card">
+        <img src="img/dok1.jpg">
+        <p><strong>Distribusi Makanan</strong><br>Petugas membagikan paket makanan bergizi untuk anak SD & posyandu.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/dok2.jpg">
+        <p><strong>Pembagian Snack Sehat</strong><br>Anak-anak menerima snack bergizi yang memenuhi kebutuhan energi harian.</p>
+      </div>
+
+      <div class="card">
+        <img src="img/dok3.jpg">
+        <p><strong>Penerimaan Paket Gizi</strong><br>Paket bergizi lengkap diterima langsung oleh siswa sebagai dukungan program kesehatan.</p>
+      </div>
+
+    </div>`;
+
+    }
+    else if (page === 'mbg') {
+    content = `
+        <h2>🍱 Menu MBG</h2>
+        <p>Informasi menu makanan bergizi gratis.</p>
+
+        <section id="menu">
+          <h3>🥗 Menu Makanan Bergizi (MBG)</h3>
+          <div class="grid three">
+
+            <div class="card">
+              <img src="img/mkn1.jpg">
+              <p>Buah Jeruk • Susu UHT • Biskuit • Telur</p>
+            </div>
+
+            <div class="card">
+              <img src="img/mkn2.jpg">
+              <p>Energen • Telur Rebus • Buah</p>
+            </div>
+
+            <div class="card">
+              <img src="img/mkn3.jpg">
+              <p>Paket Snack Gizi untuk Balita</p>
+            </div>
+
+          </div>
+        </section>
+    `;
+}
+    else if (page === 'tim') {
+    content = `
+        <h2>👥 Tim Pelaksana</h2>
+        <p>Orang-orang hebat di balik pelaksanaan program makanan bergizi.</p>
+
+        <div class="grid three">
+
+            <div class="card">
+                <img src="img/tim1.jpg">
+                <p><strong>Tim Dapur</strong><br>Pengolahan dan persiapan makanan bergizi.</p>
+            </div>
+
+            <div class="card">
+                <img src="img/tim2.jpg">
+                <p><strong>Petugas Posyandu</strong><br>Pengecekan kualitas & pembagian menu.</p>
+            </div>
+
+            <div class="card">
+                <img src="img/tim3.jpg">
+                <p><strong>Relawan Distribusi</strong><br>Pengiriman makanan ke sasaran.</p>
+            </div>
+
+        </div>
+    `;
+}
+  else if (page === 'kontak') {
+    content = `
+        <h2>📞 Kontak Informasi</h2>
+
+        <div class="card" style="text-align:left; padding:20px; line-height:1.6;">
+            <p><strong>👩 Koordinator Program:</strong><br>Selfitri Marta Saefatu</p>
+            <p><strong📍 Lokasi:</strong><br>Babau, Kupang, NTT</p>
+            <p><strong>📱 Telp/WA:</strong><br><a href="https://wa.me/6281236190466" target="_blank">0812-3619-0466 (Klik untuk WhatsApp)</a></p>
+            <p><strong>📧 Email:</strong><br><a href="mailto:selfitrisaefatu@gmail.com">selfitrisaefatu@gmail.com</a></p>
+        </div>
+
+        <br>
+
+        <iframe 
+            src="https://www.google.com/maps?q=Babau+Kupang+NTT&hl=id&z=15&output=embed" 
+            width="100%" 
+            height="300" 
+            style="border:0; border-radius:15px;">
+        </iframe>
+    `;
+}
+
+    document.getElementById("content-box").innerHTML = content;
+
+    document.getElementById("menu-page").classList.add("hidden");
+    document.getElementById("content-page").classList.remove("hidden");
+}
+</script>
+
+</body>
+</html>
